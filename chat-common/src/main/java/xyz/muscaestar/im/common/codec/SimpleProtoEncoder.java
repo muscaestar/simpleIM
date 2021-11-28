@@ -15,6 +15,7 @@ public class SimpleProtoEncoder extends MessageToByteEncoder<ProtoMsg.Message> {
     @Override
     protected void encode(ChannelHandlerContext ctx, ProtoMsg.Message msg,
                           ByteBuf out) throws Exception {
+        System.out.println("encode msg to byte");
         encode0(msg, out);
     }
 

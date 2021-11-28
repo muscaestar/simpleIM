@@ -19,6 +19,7 @@ public class SimpleProtoDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in,
                           List<Object> out) throws Exception {
+        System.out.println("byte to msg");
         Object outMsg = decode0(ctx, in);
         if (outMsg != null) {
             out.add(outMsg);
