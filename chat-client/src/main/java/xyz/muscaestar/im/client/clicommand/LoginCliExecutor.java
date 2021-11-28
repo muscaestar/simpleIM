@@ -1,6 +1,12 @@
 package xyz.muscaestar.im.client.clicommand;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import xyz.muscaestar.im.client.msgbuilder.LoginMsgBuilder;
+import xyz.muscaestar.im.client.sender.LoginSender;
+import xyz.muscaestar.im.common.bean.User;
+import xyz.muscaestar.im.common.bean.msg.ProtoMsg;
 
 import java.util.Scanner;
 
@@ -12,6 +18,9 @@ import java.util.Scanner;
  * @author muscaestar
  */
 public class LoginCliExecutor implements CliExecutor {
+    @Autowired
+    private LoginSender loginSender;
+
     @Override
     public boolean exec(Scanner scanner) {
         System.out.println("输入：用户名@密码");
@@ -30,7 +39,12 @@ public class LoginCliExecutor implements CliExecutor {
 
         // todo 后续用消息发送模块替代
         // 消息构造
+        User user = new User();
+        user.setUid(username);
+        user.setToken(password);
+        ProtoMsg.Message protoMsg = LoginMsgBuilder.of(user).build(-1);
 
         // 消息发送
+        loginSender.send(protoMsg);
     }
 }

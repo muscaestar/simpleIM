@@ -34,6 +34,7 @@
         <collections4.version>4.4</collections4.version>
         <lombok.version>1.16.10</lombok.version>
 
+        <jmockit.version>1.41</jmockit.version>
     </properties>
 
     <dependencyManagement>
@@ -100,6 +101,13 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jmockit</groupId>
+                <artifactId>jmockit</artifactId>
+                <version>${jmockit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
